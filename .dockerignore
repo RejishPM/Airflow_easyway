@@ -1,0 +1,26 @@
+# Ignore all files and directories by default
+*
+
+# Only include these (negate with !)
+!ELTScript/
+!ELTScript/elt_script.py
+!ELTScript/Dockerfile
+
+# Allow init SQL to be mounted into the container
+!source_db_init/
+!source_db_init/init.sql
+
+# Exclude unwanted files everywhere
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/*.log
+**/*.env
+**/.env
+**/.DS_Store
+**/Thumbs.db
+**/.vscode/
+**/.idea/
+**/*.ipynb
+
