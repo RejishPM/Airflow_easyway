@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+  source_postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: source_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./source_db_init/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - elt_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  target_postgres:
+    image: postgres:17
+    ports:
+      - '5434:5432'
+    networks:
+      - elt_network
+    environment:
+      POSTGRES_DB: destination_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  elt_script:
+    build:
+      context: ./ELTScript
+      dockerfile: Dockerfile
+    command: ["python", "elt_script.py"]
+    depends_on:
+      source_postgres:
+        condition: service_healthy
+      target_postgres:
+        condition: service_healthy
+    networks:
+      - elt_network
+
+networks:
+  elt_network:
+    driver: bridge
