@@ -37,9 +37,11 @@ services:
 
   elt_script:
     build:
-      context: ./ELTScript
+      context: ./eltscript
       dockerfile: Dockerfile
     command: ["python", "elt_script.py"]
+    volumes:
+    - ./eltscript:/app
     depends_on:
       source_postgres:
         condition: service_healthy
