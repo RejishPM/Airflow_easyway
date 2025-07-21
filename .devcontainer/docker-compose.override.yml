@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  airflow-webserver:
+    volumes:
+      - ../airflow:/opt/airflow
+      - ../dbt_project:/opt/airflow/dbt
+      - ../airflow/dags:/opt/airflow/dags
+      - ../.devcontainer:/opt/airflow/.devcontainer
