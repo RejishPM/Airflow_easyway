@@ -65,9 +65,10 @@ services:
       - airflow_db_volume:/opt/airflow  # Mount for DB file
       - ./airflow/dags:/opt/airflow/dags
       - ./dbt_project:/opt/airflow/dbt
-      - ./airflow/.dbt:/home/airflow/.dbt 
+      - ./airflow/.dbt:/home/airflow/.dbt
     networks:
       - elt_network
+      - mlflow_network
 
 
   airflow-webserver:
@@ -87,9 +88,10 @@ services:
       - airflow_db_volume:/opt/airflow
       - ./airflow/dags:/opt/airflow/dags
       - ./dbt_project:/opt/airflow/dbt
-      - ./airflow/.dbt:/home/airflow/.dbt 
+      - ./airflow/.dbt:/home/airflow/.dbt
     networks:
       - elt_network
+      - mlflow_network
 
   airflow-scheduler:
     image: custom-airflow
@@ -109,10 +111,13 @@ services:
       - ./airflow/.dbt:/home/airflow/.dbt
     networks:
       - elt_network
+      - mlflow_network
 
 networks:
   elt_network:
     driver: bridge
+  mlflow_network:
+    external: true
 
 volumes:
   airflow_db_volume:

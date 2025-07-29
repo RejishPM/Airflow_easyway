@@ -1,3 +1,4 @@
+mlflow
 dbt-core
 dbt-postgres
 psycopg2-binary

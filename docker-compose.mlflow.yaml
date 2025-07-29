@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  mlflow:
+    image: custom-mlflow
+    build:
+      context: ./airflow
+      dockerfile: Dockerfile.mlflow
+    container_name: mlflow_server
+    command: >
+      mlflow server
+      --backend-store-uri sqlite:////mlflow/mlflow.db
+      --default-artifact-root /mlflow/artifacts
+      --host 0.0.0.0
+      --port 5000
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlflow:/mlflow  # Persists artifacts and DB
+    networks:
+      - mlflow_network
+      - elt_network
+
+networks:
+  mlflow_network:
+    driver: bridge
