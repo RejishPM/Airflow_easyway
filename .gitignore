@@ -1,0 +1,80 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+
+# PyCharm, VSCode, and other IDE/editor settings
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Airflow logs and data
+logs/
+airflow/logs/
+airflow/airflow.db
+airflow/unittests.cfg
+
+# MLflow tracking database (if using local SQLite)
+mlruns/
+mlflow/mlflow.db
+
+# dbt artifacts
+dbt/dbt_modules/
+dbt/target/
+dbt/.dbt/
+
+# Docker-specific
+*.pid
+*.log
+*.bak
+*.swp
+docker-compose.override.yml
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.*
+
+# Python dependency lock files (optional)
+poetry.lock
+Pipfile.lock
+
+# Coverage reports
+htmlcov/
+.coverage
+.tox/
+.nox/
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# Test results
+test-output/
+.junit/
+
+# Temporary files
+*.tmp
+*.temp
+*.orig
+*.old
+*.zip
