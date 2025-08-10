@@ -1,0 +1,11 @@
+# Force Python detection
+*.py linguist-detectable=true
+*.py linguist-language=Python
+
+# Force Dockerfile detection
+Dockerfile* linguist-language=Dockerfile
+
+# Ignore auto-generated HTML/docs
+*.html linguist-vendored
+docs/** linguist-vendored
+target/** linguist-vendored
